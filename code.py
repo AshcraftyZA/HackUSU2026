@@ -8,7 +8,9 @@ MaxDif = pd.read_csv("/workspaces/HackUSU2026/DataResults1.csv")
 
 # print(MaxDif.head())
 
-# print(MaxDif.info())
+print(MaxDif.info())
 # print(MaxDif.describe())
 print(MaxDif['Milkshake Mixes'].head())
+
+
 
