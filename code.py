@@ -5,8 +5,7 @@ import statsmodels.api as sm
 from statsmodels.stats.anova import anova_lm
 import os
 
-print("Current directory:", os.getcwd())
-print("Files in directory:", os.listdir())
+#
 #Reads in the data
 MaxDif = pd.read_csv("DataResults1.csv")
 #Drops some of the unessicary columns
@@ -23,12 +22,10 @@ def bar_graph (color_option, row_count):
     plt.figure(figsize=(10,12))
     #Tell what type of graph
     mean.plot(kind="barh", color = color_option)
-
     #Naming the x label
     plt.xlabel("Average Utility Score")
     #Naming the chart
     plt.title("MaxDiff Results: Average Preferences")
-
     plt.tight_layout()
     #creates the pdf
     plt.savefig("maxdiff_plot.png")
@@ -38,6 +35,7 @@ while Rachael == 1:
         row_count = int(input("How many rows do you want to see? "))
         if row_count == -1:
             print("Exiting.")
+            Rachael -= 1
             break
         if row_count >= 15:
             print("Max of 15 rows")
@@ -52,4 +50,3 @@ while Rachael == 1:
             if satisfaction == "Y":
                 Rachael += 1
                 break
-#lets the user know the graph is created
