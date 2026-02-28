@@ -15,21 +15,41 @@ maxdif = MaxDif.drop(columns=[
     'MaxDiff1_Fit (RLH)',
     'Model fit relative quality'
 ])
-#calculates the mean
-mean = maxdif.mean().sort_values(ascending=True)
-print("Means calculated")
-#Defines the size of the figure
-plt.figure(figsize=(10,12))
-#Tell what type of graph
-mean.plot(kind="barh")
+def bar_graph (color_option, row_count):
+    #calculates the mean
+    mean = maxdif.mean().sort_values(ascending=True)
+    #defining the rows
+    mean = mean.tail(row_count)
+    plt.figure(figsize=(10,12))
+    #Tell what type of graph
+    mean.plot(kind="barh", color = color_option)
 
-#Naming the x label
-plt.xlabel("Average Utility Score")
-#Naming the chart
-plt.title("MaxDiff Results: Average Preferences")
+    #Naming the x label
+    plt.xlabel("Average Utility Score")
+    #Naming the chart
+    plt.title("MaxDiff Results: Average Preferences")
 
-plt.tight_layout()
-#creates the pdf
-plt.savefig("maxdiff_plot.png")
+    plt.tight_layout()
+    #creates the pdf
+    plt.savefig("maxdiff_plot.png")
+Rachael = 1
+while Rachael == 1:
+    while True:
+        row_count = int(input("How many rows do you want to see? "))
+        if row_count == -1:
+            print("Exiting.")
+            break
+        if row_count >= 15:
+            print("Max of 15 rows")
+        color_option = input("What color do you want the graph? Blue, Green, or Red? Type -1 to break ")
+        if color_option == "-1":
+            print("Exiting.")
+            break
+        else:
+            bar_graph(color_option, row_count)
+            print("Plot saved successfully.")
+            satisfaction = input("Are you satisfied? Y/N: ")
+            if satisfaction == "Y":
+                Rachael += 1
+                break
 #lets the user know the graph is created
-print("Plot saved successfully.")
